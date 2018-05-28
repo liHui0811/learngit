@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static%}
+    <script src="{% static 'js/lib/jQuery/jquery-2.1.4.js' %}"></script>
+
+</head>
+<body>
+<h2>商品详情</h2>
+<p>
+    商品图片: <img src="/{{goods.goodsimage_set.all.first.path }}" alt="">
+    <br/>
+    商品名称：{{goods.name}}<br/>
+    商品单价：{{goods.price}}<br/>
+    商品库存：{{goods.stock}}<br/>
+    商品销量：{{goods.sale}}<br/>
+    商品类型：{{goods.goodstype.parent.name}}->{{goods.goodstype.name}}<br/>
+    上架时间：{{goods.add_time | date:'Y-m-d G:i:s'}}<br/>
+    <!--上架时间：{{goods.add_time | date:'Y年m月d日'}}<br/>-->
+    商品描述：{{goods.intro}}<br/>
+    购买数量: <input type="text" name="count" id="count">
+    <button id="addcart" goodsid="{{goods.id}}">加入购物车</button>
+</p>
+<h4><a href="{% url 'commen:index' %}">首页</a></h4>
+<script>
+    $(function () {
+        $('#addcart').click(function () {
+            //获取数据
+            var $goodsid = $(this).attr('goodsid')
+            var $count = $(this).prev().val()
+                console.log($goodsid, $count)
+
+            $.ajax({
+                url: '/shopcart/' + $goodsid + "/" + $count + '/shopcart_add/',
+                type: 'GET',
+                success: function (response) {
+                    console.log(response)
+                    alert(response)
+                },
+                error: function () {
+                    console.log('请求发送失败')
+                }
+
+            })
+        })
+    })
+
+</script>
+
+</body>
+</html>

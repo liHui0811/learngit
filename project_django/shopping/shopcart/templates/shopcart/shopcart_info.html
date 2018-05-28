@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>我的购物车</h2><h4><a href="{% url 'commen:index' %}">首页</a></h4>
+<div class="shopcart_box">
+    <form action="{%url 'orders:order_confirm' %}" method="POST">
+        {% csrf_token %}
+        {% for shopcart in shopcart_list %}
+        <div class="shopcart_item">
+            <input type="checkbox" name="buy_goods_id" value="{{shopcart.id}}">
+            <img style="width: 200px; height: 200px" src="/{{shopcart.goods.goodsimage_set.all.first.path}}" alt=""><br>
+            名称:<span class="goods_name">{{shopcart.goods.name}}</span>
+            单价:<span class="goods_price">{{shopcart.goods.price}}</span>
+            数量:<span class="goods_count">{{shopcart.count}}</span>
+            小计金额:<span class="subtoal">{{shopcart.subtoal}}</span>
+        </div>
+        {% empty %}
+        <div class="shopcart_item">您的购物车里没有任何商品</div>
+        {% endfor %}
+        <input type="submit" value="结算">
+    </form>
+</div>
+
+</body>
+</html>

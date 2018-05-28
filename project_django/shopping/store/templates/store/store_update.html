@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>店铺维护</h2>
+<form action="{% url 'store:store_update' store.id%}" method="POST"
+      enctype="multipart/form-data">
+    {% csrf_token %}
+    店铺名称：<input type="text" name="name" id="name" value="{{store.name}}"><br/>
+    店铺封面：<input type="file" name="cover" id="cover"><br/>
+    店铺描述：<textarea name="intro" id="intro" cols="30" rows="10">{{store.intro}}</textarea><br/>
+    店铺状态：<input type="radio" checked name="status" id="0" value="0">正常营业<br/>
+    <input type="radio" name="status" id="1" value="1">暂停营业<br/>
+    <input type="radio"  name="status" id="2" value="2">删除店铺<br/>
+    <input type="submit" value="提交">
+</form>
+</body>

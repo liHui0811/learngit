@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>查看所有收货地址</h2>
+<table>
+    {% for addr in address_list %}
+    <tr>
+        <td>{{addr.recv}}</td>
+        <td>{{addr.phone}}</td>
+        <td>{{addr.nation}}</td>
+        <td>{{addr.province}}</td>
+        <td>{{addr.city}}</td>
+        <td>{{addr.country}}</td>
+        <td>{{addr.street}}</td>
+        <td>{{addr.intro}}</td>
+        <td>
+            {% if addr.status %}
+            默认地址
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td>当前用户没有收货地址</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

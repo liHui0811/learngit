@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>添加收货地址</h3>
+<form action="{% url 'users:address_add' %}" method="POST">
+    {% csrf_token %}
+    收件人:<input type="text" name="recv" id="recv"><br>
+    联系方式:<input type="text" name="phone" id="phone"><br>
+    国家:<input type="text" name="nation" id="nation"><br>
+    省区:<input type="text" name="province" id="province"><br>
+    市区:<input type="text" name="city" id="city"><br>
+    县区:<input type="text" name="country" id="country"><br>
+    街道:<input type="text" name="street" id="street"><br>
+    详细地址:<textarea name="intro" id="intro" cols="50" rows="3"></textarea><br>
+    <input type="checkbox" name="set_default" id="set_default">设置默认地址<br>
+    <input type="submit" value="提交"><br>
+</form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>查看个人订单</h2>
+{% for order in order_list %}
+<li>订单编号: {{order.id}}|下单时间:{{order.order_time|date:'Y-m-d G:i:s'}}
+<a href="{% url 'orders:order_info' order.id %}">查看订单详情</a>
+</li>
+{% empty %}
+<li>您还没有任何订单</li>
+{% endfor %}
+</body>
+</html>

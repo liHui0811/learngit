@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <script src="{% static 'js/lib/jQuery/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'goods/js/app/goods.js' %}"></script>
+</head>
+<body>
+<h2>上传商品</h2>
+<form action="{% url 'goods:goods_upload' store_id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    商品名称：<input type="text" name="name" id="name"><br/>
+    商品单价：<input type="text" name="price" id="price"><br/>
+    类型：
+    <select id="type1">
+        <option value="">--请选择商品类型--</option>
+        {% for goodstype in goods_1_type %}
+        <option value="{{goodstype.id}}">{{goodstype.name}}</option>
+        {% endfor %}
+    </select>
+    <select id="type2" name="type2">
+        <option value="">--请选择商品具体类型--</option>
+    </select><br/>
+    默认展示图片：<input type="file" name="imgpath" id="imgpath"><br/>
+    库存：<input type="text" name="stock" id="stock"><br/>
+    商品简介：<textarea name="intro" id="intro" cols="30" rows="10"></textarea><br/>
+    <input type="submit" value="上架商品">
+</form>
+<h4><a href="{% url 'commen:index' %}">首页</a></h4>
+</body>
+</html>

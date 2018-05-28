@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>开店</h2>
+{{error_code}}{{error_msg}}
+<form action="{% url 'store:store_add' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    店名：<input type="text" name="name" id="name"><br>
+    门面：<input type="file" name="cover" id="cover"><br>
+    店铺描述：<textarea name="intro" id="intro" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="开业大吉">
+    <h4><a href="{% url 'commen:index' %}">首页</a></h4>
+
+</form>
+</body>
+</html>
